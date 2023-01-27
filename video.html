@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="author" content="Sergio Mateos">
+    <title>Mi vídeo</title>
+</head>
+<body>
+    <div id="video-container">
+        <video id="my-video" style="border: 2px solid black;" width="640" height="480" poster="alvaro-caratula.jpg">
+            <source src="alvaro.mp4" type="video/mp4">
+            <source src="alvaro.webm" type="video/webm">
+            <source src="alvaro.ogg" type="video/ogg">
+            Tu navegador no es compatible con ninguno de los formatos de vídeo proporcionados.
+        </video>
+        <br>
+        
+    </div>
+    <a href="alvaro.mp4" download>Descargar</a>
+    <a href="alvaro.mp4" target="_blank">Abrir en una nueva página</a>
+    <script>
+        // Obtener el elemento de vídeo
+        const video = document.querySelector("#my-video");
+
+        // Crear botones personalizados
+
+        const botonPlay = document.createElement("button");
+        botonPlay.innerHTML = "Reproducir";
+        botonPlay.onclick = () => video.play();
+
+        const botonPausa = document.createElement("button");
+        botonPausa.innerHTML = "Pausa";
+        botonPausa.onclick = () => video.pause();
+
+        const botonDetener = document.createElement("button");
+        botonDetener.innerHTML = "Detener";
+        botonDetener.onclick = () => {
+            video.pause();
+            video.currentTime = 0;
+        };
+
+        const botonSubirVolumen = document.createElement("button");
+        botonSubirVolumen.innerHTML = "Volumen +";
+        botonSubirVolumen.onclick = () => {
+        video.volume += 0.1;
+        };
+        const botonBajarVolumen = document.createElement("button");
+        botonBajarVolumen.innerHTML = "Volumen -";
+        botonBajarVolumen.onclick = () => {
+        video.volume -= 0.1;
+    };
+
+    const botonPantallaCompleta = document.createElement("button");
+    botonPantallaCompleta.innerHTML = "Pantalla completa";
+    botonPantallaCompleta.onclick = () => {
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+            video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+        }
+    };
+
+    // Añadir botones al elemento de vídeo
+    video.parentNode.appendChild(botonPlay);
+    video.parentNode.appendChild(botonPausa);
+    video.parentNode.appendChild(botonDetener);
+    video.parentNode.appendChild(botonSubirVolumen);
+    video.parentNode.appendChild(botonBajarVolumen);
+    video.parentNode.appendChild(botonPantallaCompleta);
+</script>
+</body>
+</html>
